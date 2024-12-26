@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>Membership</h1>
+  <%- include("partials/errors.ejs") %>
+  <form action="/join/member" method="POST">
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" required />
+    <label for="confirm_password">Confirm Password</label>
+    <input id="confirm_password" name="confirm_password" type="password" required />
+    <button>Become a member!</button>
+  </form>
+</body>
+</html>

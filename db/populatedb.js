@@ -7,17 +7,11 @@ const SQL = `
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   first_name VARCHAR (50),
-  second_name VARCHAR (50),
+  last_name VARCHAR (50),
   username VARCHAR (255),
   password TEXT,
-  membership_status BOOLEAN,
-  admin BOOLEAN
-);
-
-CREATE TABLE IF NOT EXISTS message_authors (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
-  message_id INTEGER REFERENCES messages (id) ON DELETE CASCADE
+  membership_status BOOLEAN DEFAULT false,
+  admin BOOLEAN DEFAULT false
 );
 
 CREATE TABLE IF NOT EXISTS messages (
@@ -25,6 +19,12 @@ CREATE TABLE IF NOT EXISTS messages (
   title VARCHAR (255),
   time_stamp TIMESTAMP,
   message_text TEXT
+);
+
+CREATE TABLE IF NOT EXISTS message_author (
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  user_id INTEGER REFERENCES users (id) ON DELETE CASCADE,
+  message_id INTEGER REFERENCES messages (id) ON DELETE CASCADE
 );
 `;
 

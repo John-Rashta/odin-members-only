@@ -1,0 +1,36 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div class="pageContainer">
+        <h1>HomePage</h1>
+        <% if (locals.user) {%>
+            <h1>WELCOME BACK <%= user.username %></h1>
+            <a href="/create">New Message</a>
+            <a href="/club/logout">LOG OUT</a>
+        <% } else {%>
+            <a href="/club/login">Login</a>
+        <%  } %>
+        <%- include("partials/errors.ejs") %>
+        <% if (locals.messages) { %>
+            <ul>
+            <% messages.map((message) => { %>
+                <li>
+                   <% if (locals.user && (locals.user.membership_status || locals.user.admin)) { %>
+                        <div>Name: <%= message.first_name %> <%= message.last_name %> </div>
+                        <div><%= message.time_stamp %></div>
+                    <% } %>
+                    <div><%= message.message_text %></div>
+                    <% if (locals.user && locals.user.admin) { %>
+                        <form action=<%= `/delete/${message.id}` %> method="POST">
+                            <button type="submit">Delete Message</button>
+                        </form>
+                    <% } %>
+                </li>
+            <% }) %>
+            </ul>
+        <% } %>
+        <a href="/club/signup">Signup</a>
+    </div>
+  </body>
+</html>
