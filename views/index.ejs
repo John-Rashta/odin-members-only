@@ -7,6 +7,8 @@
         <% if (locals.user) {%>
             <h1>WELCOME BACK <%= user.username %></h1>
             <a href="/create">New Message</a>
+            <a href="/join/member">Join the Club!</a>
+            <a href="/join/admin">Become an Admin!</a>
             <a href="/club/logout">LOG OUT</a>
         <% } else {%>
             <a href="/club/login">Login</a>
@@ -20,6 +22,7 @@
                         <div>Name: <%= message.first_name %> <%= message.last_name %> </div>
                         <div><%= message.time_stamp %></div>
                     <% } %>
+                    <div><%= message.title %></div>
                     <div><%= message.message_text %></div>
                     <% if (locals.user && locals.user.admin) { %>
                         <form action=<%= `/delete/${message.id}` %> method="POST">

@@ -1,6 +1,6 @@
 const db = require("../db/queries");
 const asyncHandler = require('express-async-handler');
-const { body, validationResult, query, param, matchedData } = require("express-validator");
+const { body, validationResult, param, matchedData } = require("express-validator");
 const { isAuth } = require("../middleware/authMiddleware");
 
 const validateMessage = [
@@ -31,6 +31,7 @@ exports.showCreateMessage = [
 
 exports.createMessage = [
     validateMessage,
+    isAuth,
     asyncHandler(async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

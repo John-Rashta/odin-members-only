@@ -1,6 +1,6 @@
 const db = require("../db/queries");
 const asyncHandler = require('express-async-handler');
-const { body, validationResult, query, param, matchedData } = require("express-validator");
+const { body, validationResult, matchedData } = require("express-validator");
 const bcrypt = require('bcryptjs');
 const passport = require("passport");
 require("dotenv").config();
