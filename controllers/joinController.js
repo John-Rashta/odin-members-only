@@ -58,7 +58,7 @@ exports.makeAdmin = [
     asyncHandler(async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).render("membership", {
+            return res.status(400).render("admin", {
                 errors: errors.array(),
               });
         };
